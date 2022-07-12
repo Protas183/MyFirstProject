@@ -26,7 +26,7 @@ $user = $result->fetch_assoc();
     require_once("./layouts/nav.php");
 ?>
 <body>
-    <div class="container vh-100">
+    <div class="container min-vh-100 p-5">
         <div class="w-100">
             <?php if(!empty($errors)){ ?>
                 <div class="alert alert-danger" role="alert">
@@ -54,7 +54,7 @@ $user = $result->fetch_assoc();
                                     type="submit">Сохранить</button>   
                         </form>
                     </div>
-                    <div class="border border-dark rounded p-2">                                         
+                    <div class="border border-dark rounded p-2 mb-5">                                         
                         <h1>Настройки пользователя</h1>                                 
                         <form action="validation-form/updateProfile.php" method="post">
                         <input type="text" class="form-control" name="login"
@@ -76,6 +76,19 @@ $user = $result->fetch_assoc();
                                 type="submit">Сохранить</button>
                         </form>
                     </div>
+                    <div class="border border-dark rounded p-2">
+                        <h1>Смена пароля</h1>
+                        <form action="validation-form/updatePass.php" method="post">
+                        <input type="password" class="form-control" name="old_pass"
+                               id="pass" placeholder="Введите старый пароль" required><br>
+                        <input type="password" class="form-control" name="new_pass"
+                               id="pass" placeholder="Введите новый пароль" required><br>
+                        <input type="password" class="form-control" name="new_pass_confirm"
+                               id="pass" placeholder="Подтвердите пароль" required><br>
+                        <button class="btn btn-success"
+                                type="submit">Сохранить</button>
+                        </form>
+                    </div>    
                 </div>
             </div>
         </div>

@@ -11,6 +11,8 @@
     FILTER_SANITIZE_STRING);
     $pass = filter_var(trim($_POST['pass']),
     FILTER_SANITIZE_STRING);
+    $pass_confirm = filter_var(trim($_POST['pass_confirm']),
+    FILTER_SANITIZE_STRING);
     $date = filter_var(trim($_POST['date']),
     FILTER_SANITIZE_STRING);
     $email = filter_var(trim($_POST['email']),
@@ -18,11 +20,10 @@
     $city = filter_var(trim($_POST['city']),
     FILTER_SANITIZE_STRING);
     
-    
-
     $today=strtotime (date("Y-m-d"));
     $birthday=strtotime($date);
-
+    
+        
     $errors = [];
 
     if(mb_strlen($login) < 3 || mb_strlen($login) > 90) {
@@ -33,6 +34,9 @@
     }
     if(mb_strlen($pass) < 2 || mb_strlen($pass) > 10) {
         $errors[] =  "Недопустимая длина пароля (от 2 до 10 символов)";
+    }
+    if ($pass !== $pass_confirm){
+        $errors[] = "Пароли не совпадают";
     }
     if ($birthday > $today) {
         $errors[] = "Недопустимая дата";

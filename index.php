@@ -61,6 +61,8 @@
                            id="email" placeholder="Введите почту" required><br>
                     <input type="password" class="form-control" name="pass"
                            id="pass" placeholder="Введите пароль" required><br>
+                    <input type="password" class="form-control" name="pass_confirm"
+                           id="pass" placeholder="Подтвердите пароль" required><br>
                     <button class="btn btn-success"
                             type="submit">Зарегистрировать</button>
                 </form>

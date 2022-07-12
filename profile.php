@@ -25,7 +25,7 @@ if (isset($_SESSION['success_msg'])){
 ?>
 
 <body>
-<div class="container vh-100">
+<div class="container min-vh-100 p-5">
     <?php if($succes_msg){ ?>
         <div class="alert alert-success" role="alert">
             <?php echo $succes_msg ?>
