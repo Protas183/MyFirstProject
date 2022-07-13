@@ -24,7 +24,7 @@ $user_auth = isset($_SESSION['user']);
 
     $pass = md5($pass."qwerty12345");
 
-    $result = $mysql->query("SELECT * FROM users WHERE  pass = '$pass'");
+    $result = $mysql->query("SELECT * FROM users WHERE  `pass` = '$pass'");
     $user = $result->fetch_assoc();
     if(count($user) == 0) {
         $errors[] = "Неверно введен старый пароль";
@@ -33,8 +33,11 @@ $user_auth = isset($_SESSION['user']);
         exit();
     }
 
-    $_SESSION['user'] = $user['id'];
+    $query = "UPDATE `users` SET `pass` = '$pass' WHERE `id` = '$user_id'";
+    $mysql->query ($query);
 
+    $_SESSION['user'] = $user['id'];
+    $_SESSION['success_msg'] = "Данные успешно обновленны";
     $mysql->close();
 
     header('Location: ../settingsProfile.php');
