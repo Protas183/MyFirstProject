@@ -4,7 +4,7 @@ $user_auth = isset($_SESSION['user']);
     if(!$user_auth){
     header('Location: /');
     }
-
+    $user_id = $_SESSION["user"];
     include("../config/database.php");
     $old_pass = filter_var(trim($_POST['old_pass']),
     FILTER_SANITIZE_STRING);
@@ -21,22 +21,22 @@ $user_auth = isset($_SESSION['user']);
     if ($new_pass !== $new_pass_confirm){
         $errors[] = "Пароли не совпадают";
     }
+    $old_pass = md5($old_pass."qwerty12345");
+    $new_pass = md5($new_pass."qwerty12345");
 
-    $pass = md5($pass."qwerty12345");
-
-    $result = $mysql->query("SELECT * FROM users WHERE  `pass` = '$pass'");
+    $result = $mysql->query("SELECT * FROM users WHERE  `pass` = '$old_pass' AND `id` = '$user_id'");
     $user = $result->fetch_assoc();
     if(count($user) == 0) {
         $errors[] = "Неверно введен старый пароль";
         $_SESSION['errors'] = $errors;
-        header('Location: ../index.php');
+        header('Location: ../settingsProfile.php');
         exit();
     }
 
-    $query = "UPDATE `users` SET `pass` = '$pass' WHERE `id` = '$user_id'";
+    $query = "UPDATE `users` SET `pass` = '$new_pass' WHERE `id` = '$user_id'";
     $mysql->query ($query);
 
-    $_SESSION['user'] = $user['id'];
+    
     $_SESSION['success_msg'] = "Данные успешно обновленны";
     $mysql->close();
 
