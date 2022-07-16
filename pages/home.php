@@ -33,17 +33,40 @@ include("../config/db-card.php");
 			<h1 class="mb-3 mt-3" >Welcome to my Blog</h1>
 				<div class="row">
 					<div>
-						<a href="../validation-form/uploadUserArticle.php" class="btn btn-primary">Добавить статью</a>
+						<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Добавить статью</button>
 					</div>
-						<div class="card pt-3 m-3 card-container">
+						<?php foreach ($rows as $cardarticle ) { ?>
+							<div class="card pt-3 m-3 card-container">
 							<img src="<?php echo $cardarticle["img"]; ?>" class="card-img-top" alt="...">
 								<div class="card-body">
 									<h5 class="card-title"><?php echo $cardarticle["title"]; ?></h5>
 									<p class="card-text"><?php echo $cardarticle["text"]; ?></p>
 									<span class="date"><?php echo date("d.m.Y в H:i",  strtotime($cardarticle["date"])); ?></span>
 								</div>
-						</div>	
+						</div>
+						<?php }?>
 				</div>
+		</div>
+		<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		      </div>
+		      <form>
+		      	<div class="modal-body">
+		        	<input type="text" name="title" class="form-control">
+		        	<input type="file" name="img" class="form-control">
+		        	<textarea class="form-control" name="description"></textarea>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+		        <button type="submit" class="btn btn-primary">Создать пост</button>
+		      </div>
+		      </form>
+		    </div>
+		  </div>
 		</div>
 </body>
 

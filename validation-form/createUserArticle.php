@@ -10,10 +10,6 @@ if(!$user_auth){
 include("../config/db-card.php");
 ?>
 
-<?php
-    require_once("../layouts/header.php");
-    require_once("../layouts/nav.php");
-?>
 
 
 
