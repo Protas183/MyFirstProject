@@ -40,7 +40,7 @@ include("../config/db-card.php");
 							<img src="<?php echo $cardarticle["img"]; ?>" class="card-img-top" alt="...">
 								<div class="card-body">
 									<h5 class="card-title"><?php echo $cardarticle["title"]; ?></h5>
-									<p class="card-text"><?php echo $cardarticle["text"]; ?></p>
+									<p class="card-text"><?php echo $cardarticle["description"]; ?></p>
 									<span class="date"><?php echo date("d.m.Y в H:i",  strtotime($cardarticle["date"])); ?></span>
 								</div>
 						</div>
@@ -54,11 +54,12 @@ include("../config/db-card.php");
 		        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
 		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 		      </div>
-		      <form>
+		      <form action="./createUserArticle.php" method="post" enctype="multipart/form-data">
 		      	<div class="modal-body">
 		        	<input type="text" name="title" class="form-control">
 		        	<input type="file" name="img" class="form-control">
-		        	<textarea class="form-control" name="description"></textarea>
+		        	<input type="date" name="date" class="form-control">
+		          	<textarea class="form-control" name="description"></textarea>
 		      </div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
